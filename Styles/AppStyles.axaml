@@ -1,0 +1,37 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#2A2A2A"/>
+    </Style>
+    
+    <Style Selector="Menu">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <Style Selector="MenuItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#B0B0B0"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Padding" Value="8,4"/>
+    </Style>
+    
+    <Style Selector="MenuItem:pointerover /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="#3A3A3A"/>
+    </Style>
+    
+    <Style Selector="MenuItem:pressed /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="#505050"/>
+    </Style>
+    
+    <Style Selector="Separator">
+        <Setter Property="Background" Value="#404040"/>
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="Margin" Value="5,3"/>
+    </Style>
+    
+    <Style Selector="TextBox">
+        <Setter Property="SelectionBrush" Value="#4A90D9"/>
+    </Style>
+    
+</Styles>

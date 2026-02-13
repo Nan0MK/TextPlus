@@ -1,0 +1,98 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TextPlus"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        x:Class="TextPlus.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="TextPlus"
+        Width="1000"
+        Height="700"
+        Background="#262626"
+        WindowStartupLocation="CenterScreen"
+        Icon="avares://TextPlus/resources/TextPlusLogo.png">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" Margin="12,12,12,0" CornerRadius="10" Background="#323232" BoxShadow="0 4 10 0 #50000000" MinHeight="48">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+                    <GradientStop Offset="0" Color="#3D3D3D"/>
+                    <GradientStop Offset="1" Color="#2A2A2A"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Menu Background="Transparent" Margin="10,10,5,5" Padding="0,0" VerticalAlignment="Center">
+                <MenuItem Header="_File" Foreground="#7AB8FF" FontSize="15" CornerRadius="10" Width="50">
+                    <MenuItem Header="_New" x:Name="NewMenuItem" Click="NewFile" InputGesture="Ctrl+N"/>
+                    <MenuItem Header="_Open..." x:Name="OpenMenuItem" Click="OpenFile" InputGesture="Ctrl+O"/>
+                    <Separator/>
+                    <MenuItem Header="_Save" x:Name="SaveMenuItem" Click="SaveFile" InputGesture="Ctrl+S"/>
+                    <MenuItem Header="Save _As..." x:Name="SaveAsMenuItem" Click="SaveFileAs" InputGesture="Ctrl+Shift+S"/>
+                    <Separator/>
+                    <MenuItem Header="E_xit" Click="Exit" InputGesture="Alt+F4"/>
+                </MenuItem>
+                <MenuItem Header="_Edit" Foreground="#7AB8FF" FontSize="15" CornerRadius="10" Width="50">
+                    <MenuItem Header="_Undo" x:Name="UndoMenuItem" Click="Undo" InputGesture="Ctrl+Z"/>
+                    <MenuItem Header="_Redo" x:Name="RedoMenuItem" Click="Redo" InputGesture="Ctrl+Y"/>
+                    <Separator/>
+                    <MenuItem Header="Cu_t" x:Name="CutMenuItem" Click="Cut" InputGesture="Ctrl+X"/>
+                    <MenuItem Header="_Copy" x:Name="CopyMenuItem" Click="Copy" InputGesture="Ctrl+C"/>
+                    <MenuItem Header="_Paste" x:Name="PasteMenuItem" Click="Paste" InputGesture="Ctrl+V"/>
+                    <MenuItem Header="Select _All" x:Name="SelectAllMenuItem" Click="SelectAll" InputGesture="Ctrl+A"/>
+                </MenuItem>
+            </Menu>
+        </Border>
+        <Border Grid.Row="1" Margin="12,10" CornerRadius="14" Background="#2A2A2A" BoxShadow="0 4 12 0 #40000000">
+            <Border Background="#1C1C1C" CornerRadius="13" BoxShadow="inset 0 3 10 0 #70000000">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Border Grid.Column="0" CornerRadius="13,0,0,13" Padding="10,12,14,12">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                                <GradientStop Offset="0" Color="#282828"/>
+                                <GradientStop Offset="1" Color="#222222"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock 
+                            x:Name="LineNumbers"
+                            FontFamily="Consolas, Courier New, monospace"
+                            FontSize="14"
+                            Foreground="#484848"
+                            TextAlignment="Right"
+                            Text="1"
+                            MinWidth="40"
+                        />
+                    </Border>
+                    <TextBox 
+                        Grid.Column="1"
+                        x:Name="Editor"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        AcceptsReturn="True"
+                        AcceptsTab="True"
+                        TextWrapping="Wrap"
+                        FontFamily="Consolas, Courier New, monospace"
+                        FontSize="14"
+                        Foreground="#E0E0E0"
+                        CaretBrush="#E0E0E0"
+                        Padding="12,12,12,12"
+                        Watermark="Start typing..."
+                    />
+                </Grid>
+            </Border>
+        </Border>
+        <Border Grid.Row="2" Margin="12,0,12,12" CornerRadius="10" Background="#323232" BoxShadow="0 -2 6 0 #25000000">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+                    <GradientStop Offset="0" Color="#2A2A2A"/>
+                    <GradientStop Offset="1" Color="#353535"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border CornerRadius="9" Background="#2A2A2A" Padding="16,8" BoxShadow="inset 0 1 4 0 #20000000">
+                <Grid ColumnDefinitions="*,Auto,Auto">
+                    <TextBlock Grid.Column="0" x:Name="StatusText" Text="Ready" Foreground="#7AB8FF" VerticalAlignment="Center" FontSize="12"/>
+                    <TextBlock Grid.Column="1" x:Name="PositionText" Text="Ln 1, Col 1" Foreground="#7AB8FF" VerticalAlignment="Center" Margin="30,0" FontSize="12"/>
+                    <TextBlock Grid.Column="2" x:Name="EncodingText" Text="UTF-8" Foreground="#7AB8FF" VerticalAlignment="Center" FontSize="12"/>
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+</Window>

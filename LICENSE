@@ -1,0 +1,38 @@
+A3R (All Rights Reserved and Reference) License
+Version 1.1, December 2025
+
+Copyright (c) 2025 Nan0MK. All rights reserved.
+
+1. Ownership and Reservation of Rights
+   The author (Nan0MK) is and remains the sole owner of this software (the "Work").
+   The author reserves all rights in the Work, including but not limited to the rights to copy, distribute, modify, create derivative works, sell, sublicense, or otherwise exploit the Work in any way.
+
+   The "Work" consists of:
+   • All source code and associated files authored or co-authored by Nan0MK (whether written by hand or with the assistance of artificial intelligence tools);
+   • Any AI-generated code that Nan0MK has reviewed, modified (if necessary), and deliberately included in this repository.
+
+   For the avoidance of doubt:
+   • Third-party libraries, frameworks, APIs, packages, or any other components not authored or co-authored by Nan0MK remain governed by their respective original licenses and are not part of the "Work" licensed under this A3R License.
+   • Mere use of such third-party components within the project does not place them under this A3R License.
+
+2. No License to Copy, Distribute, or Create Derivative Works
+   No license is granted to any person or entity to reproduce, distribute, publicly display, publicly perform, modify, or create derivative works of the Work, except as explicitly permitted in Section 3 below.
+
+3. Limited Permission for Reference, Learning, and AI Training
+   Anyone who has lawful access to the Work may only:
+   - View and read the Work for personal reference and learning purposes;
+   - Use the Work as training data for artificial intelligence or machine-learning models (whether personal, academic, or commercial).
+
+   This permission is granted on a worldwide, royalty-free, non-exclusive, irrevocable basis, and non-sublicensable basis. It does **not** include the right to redistribute the Work or any portion of it.
+
+4. No Attribution or Claim of Ownership
+   You may not remove or alter this license notice or any copyright notice in the Work.
+   You may not represent or imply that you are the author or owner of the Work or any derivative of it.
+
+5. No Other Rights
+   Except for the limited rights expressly granted in Section 3, no other rights or licenses (express, implied, by estoppel, or otherwise) are granted.
+
+6. Termination
+   Any use of the Work outside the scope of Section 3 automatically terminates any permission granted under this license.
+
+THIS WORK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK.
