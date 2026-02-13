@@ -1,0 +1,7 @@
+Progress Update - 02-13-2026
+
+- Built self-contained release for Windows x64
+- Output: publish-standalone/TextPlus.exe (77MB, single-file)
+- Users can run without .NET installation
+- Updated .gitignore to include publish-standalone/
+- Added build.ps1 (non-standalone) and build-standalone.ps1

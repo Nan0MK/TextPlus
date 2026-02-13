@@ -3,6 +3,7 @@ bin/
 obj/
 out/
 publish/
+publish-standalone/
 *.user
 *.userosscache
 *.sln.docstates
