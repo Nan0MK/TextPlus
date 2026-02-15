@@ -11,7 +11,26 @@
         Height="700"
         Background="#262626"
         WindowStartupLocation="CenterScreen"
-        Icon="avares://TextPlus/resources/TextPlusLogo.png">
+        Icon="avares://TextPlus/resources/TextPlusLogo.png"
+        KeyDown="Window_KeyDown">
+    <Window.Styles>
+        <Style Selector="Border#EditorBorder">
+            <Setter Property="BorderBrush" Value="#40000000"/>
+            <Style.Animations>
+                <Animation Duration="0:0:2" IterationCount="INFINITE" PlaybackDirection="Alternate">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="BorderBrush" Value="#40000000"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="50%">
+                        <Setter Property="BorderBrush" Value="#609AB8FF"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="BorderBrush" Value="#40000000"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Window.Styles>
     <Grid RowDefinitions="Auto,*,Auto">
         <Border Grid.Row="0" Margin="12,12,12,0" CornerRadius="10" Background="#323232" BoxShadow="0 4 10 0 #50000000" MinHeight="48">
             <Border.Background>
@@ -39,46 +58,79 @@
                     <MenuItem Header="_Paste" x:Name="PasteMenuItem" Click="Paste" InputGesture="Ctrl+V"/>
                     <MenuItem Header="Select _All" x:Name="SelectAllMenuItem" Click="SelectAll" InputGesture="Ctrl+A"/>
                 </MenuItem>
+                <MenuItem Header="_View" Foreground="#7AB8FF" FontSize="15" CornerRadius="10" Width="50">
+                    <MenuItem Header="Zoom _In" Click="ZoomInMenu"/>
+                    <MenuItem Header="Zoom _Out" Click="ZoomOutMenu"/>
+                    <MenuItem Header="_Reset Zoom" Click="ResetZoomMenu" InputGesture="Ctrl+0"/>
+                    <!-- <Separator/>
+                    <MenuItem Header="Open _Folder" Click="OpenFolder" InputGesture="Ctrl+Shift+O"/> -->
+                </MenuItem>
             </Menu>
         </Border>
-        <Border Grid.Row="1" Margin="12,10" CornerRadius="14" Background="#2A2A2A" BoxShadow="0 4 12 0 #40000000">
-            <Border Background="#1C1C1C" CornerRadius="13" BoxShadow="inset 0 3 10 0 #70000000">
-                <Grid ColumnDefinitions="Auto,*">
-                    <Border Grid.Column="0" CornerRadius="13,0,0,13" Padding="10,12,14,12">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                                <GradientStop Offset="0" Color="#282828"/>
-                                <GradientStop Offset="1" Color="#222222"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <TextBlock 
-                            x:Name="LineNumbers"
-                            FontFamily="Consolas, Courier New, monospace"
-                            FontSize="14"
-                            Foreground="#484848"
-                            TextAlignment="Right"
-                            Text="1"
-                            MinWidth="40"
-                        />
-                    </Border>
-                    <TextBox 
-                        Grid.Column="1"
-                        x:Name="Editor"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        AcceptsReturn="True"
-                        AcceptsTab="True"
-                        TextWrapping="Wrap"
-                        FontFamily="Consolas, Courier New, monospace"
-                        FontSize="14"
-                        Foreground="#E0E0E0"
-                        CaretBrush="#E0E0E0"
-                        Padding="12,12,12,12"
-                        Watermark="Start typing..."
-                    />
-                </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*" Margin="12,10" Background="Transparent">
+            <Border Grid.Column="0" x:Name="FileTreePanel" Width="220" Margin="0,0,0,0" CornerRadius="14,0,0,14" Background="#2A2A2A" BorderThickness="2,2,0,2" BorderBrush="#40000000" BoxShadow="0 4 12 0 #40000000" IsVisible="False">
+                <Border CornerRadius="12,0,0,12" Background="#252525">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Grid.Row="0" Padding="12,8" Background="#2A2A2A" CornerRadius="12,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content=".." Click="GoUpFolder" Padding="8,4" Background="#3D3D3D" Foreground="#7AB8FF" BorderThickness="0" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="FolderPath" Text="No folder open" Foreground="#7AB8FF" VerticalAlignment="Center" FontSize="12" TextTrimming="CharacterEllipsis" MaxWidth="140"/>
+                            </StackPanel>
+                        </Border>
+                        <TreeView Grid.Row="1" x:Name="FileTree" Background="Transparent" BorderThickness="0" Padding="4">
+                            <TreeView.ItemTemplate>
+                                <TreeDataTemplate ItemsSource="{Binding Children}">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <TextBlock Text="{Binding Icon}" FontSize="14" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" Foreground="#D4D4D4" VerticalAlignment="Center" FontSize="13"/>
+                                    </StackPanel>
+                                </TreeDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+                    </Grid>
+                </Border>
             </Border>
-        </Border>
+            <Border Grid.Column="1" x:Name="EditorBorder" CornerRadius="14" Background="#2A2A2A" BorderThickness="2" BorderBrush="#40000000" BoxShadow="0 4 12 0 #40000000" Margin="0,0,0,0">
+                <Border Background="#1C1C1C" CornerRadius="11" BoxShadow="inset 0 3 10 0 #70000000">
+                    <ScrollViewer x:Name="EditorScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <Border Grid.Column="0" CornerRadius="13,0,0,13" Padding="10,12,14,12" MinHeight="50">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                                        <GradientStop Offset="0" Color="#282828"/>
+                                        <GradientStop Offset="1" Color="#222222"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock 
+                                    x:Name="LineNumbers"
+                                    FontFamily="Consolas, Courier New, monospace"
+                                    FontSize="14"
+                                    Foreground="#484848"
+                                    TextAlignment="Right"
+                                    Text="1"
+                                    MinWidth="40"
+                                />
+                            </Border>
+                            <TextBox 
+                                Grid.Column="1"
+                                x:Name="Editor"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                AcceptsReturn="True"
+                                AcceptsTab="True"
+                                TextWrapping="Wrap"
+                                FontFamily="Consolas, Courier New, monospace"
+                                FontSize="14"
+                                Foreground="#E0E0E0"
+                                CaretBrush="#E0E0E0"
+                                Padding="12,12,12,12"
+                                Watermark="Start typing..."
+                            />
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </Border>
+            </Grid>
         <Border Grid.Row="2" Margin="12,0,12,12" CornerRadius="10" Background="#323232" BoxShadow="0 -2 6 0 #25000000">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">

@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using System.Linq;
 
 namespace TextPlus;
 
@@ -15,7 +16,8 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow();
+            var args = desktop.Args?.ToList() ?? new List<string>();
+            desktop.MainWindow = new MainWindow(args);
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -1,0 +1,15 @@
+Progress Update - 02-14-2026
+
+Features Added:
+- Zoom in/out functionality with Ctrl+Mouse wheel
+- Zoom in: Ctrl+Plus, Ctrl+OemPlus, or menu
+- Zoom out: Ctrl+Minus, Ctrl+OemMinus, or menu
+- Reset zoom: Ctrl+0
+- Zoom level displayed in status bar
+- Animated subtle background highlight in editor area (pulsing effect)
+
+Bug Fixes:
+- Fixed Ctrl+S and other keyboard shortcuts not working
+- Fixed line numbers not scrolling with editor
+- Fixed status bar not updating properly with large files
+- Fixed icon not showing on exe file
